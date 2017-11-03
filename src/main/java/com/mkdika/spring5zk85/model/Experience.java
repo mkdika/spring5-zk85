@@ -21,15 +21,46 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.mkdika.spring5zk85;
+package com.mkdika.spring5zk85.model;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@SpringBootApplication
-public class Spring5zk85Application {
 
-    public static void main(String[] args) {
-        SpringApplication.run(Spring5zk85Application.class, args);
-    }
+/**
+ *
+ * @author Maikel Chandika <mkdika@gmail.com>
+ */
+@Entity
+@Data
+@NoArgsConstructor
+public class Experience implements Serializable {
+    
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Integer id;
+    
+    @NotEmpty(message = "Company Name can't empty.")
+    private String companyname;
+    
+    @NotNull(message = "Company Sector can't empty.")
+    private Integer companysector;
+    
+    @Email(message = "Not a valid Company Email.")
+    private String companyemail;
+    
+    @NotEmpty(message = "Position can't empty.")
+    private String position;
+    
+    @NotNull(message = "Serve Year can't empty.")
+    private Integer serveYear;
+    
 }
