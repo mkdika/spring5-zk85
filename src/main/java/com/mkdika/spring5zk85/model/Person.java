@@ -68,6 +68,7 @@ public class Person implements Serializable {
         
     private Double donation;    
     
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true) 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER,
+               orphanRemoval = true) 
     private List<Experience> personExperiences;
 }
