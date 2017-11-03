@@ -21,14 +21,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.mkdika.spring5zk85;
+package com.mkdika.spring5zk85.config;
 
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.SpringApplication;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-@SpringBootApplication
-public class Spring5zk85Application {
-    public static void main(String[] args) {
-        SpringApplication.run(Spring5zk85Application.class, args);
-    }  
+/**
+ *
+ * @author Maikel Chandika <mkdika@gmail.com>
+ */
+@Configuration
+@EnableWebMvc
+public class ApplicationConfig extends WebMvcConfigurerAdapter {
+    
+    /*
+        To set redirection for startup file to index.zul
+    */
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addRedirectViewController("/", "index.zul");
+    }
 }

@@ -21,29 +21,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.mkdika.spring5zk85.vmcontroller;
+package com.mkdika.spring5zk85.config;
 
-import com.mkdika.spring5zk85.repository.PersonRepository;
-import org.zkoss.bind.annotation.Init;
-import org.zkoss.zk.ui.select.annotation.VariableResolver;
-import org.zkoss.zk.ui.select.annotation.WireVariable;
-import org.zkoss.zkplus.spring.DelegatingVariableResolver;
+import java.util.HashMap;
+import java.util.Map;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.zkoss.zk.au.http.DHtmlUpdateServlet;
+import org.zkoss.zk.ui.http.DHtmlLayoutServlet;
 
 /**
  *
  * @author Maikel Chandika <mkdika@gmail.com>
  */
-@VariableResolver(DelegatingVariableResolver.class)
-public class IndexVm {
-    
-    @WireVariable
-    PersonRepository repository;
-        
-    public IndexVm() {
+@Configuration
+public class ZkConfig {
+
+    @Bean
+    public ServletRegistrationBean dHtmlLayoutServlet() {
+        Map<String, String> params = new HashMap<>();
+        params.put("update-uri", "/zkau");
+        DHtmlLayoutServlet dHtmlLayoutServlet = new DHtmlLayoutServlet();
+        ServletRegistrationBean reg = new ServletRegistrationBean(dHtmlLayoutServlet, "*.zul");
+        reg.setLoadOnStartup(1);
+        reg.setInitParameters(params);
+        return reg;
     }
-    
-    @Init
-    public void init() {
-        
-    }        
+
+    @Bean
+    public ServletRegistrationBean dHtmlUpdateServlet() {
+        Map<String, String> params = new HashMap<>();
+        params.put("update-uri", "/zkau/*");
+        ServletRegistrationBean reg = new ServletRegistrationBean(new DHtmlUpdateServlet(), "/zkau/*");
+        reg.setLoadOnStartup(2);
+        reg.setInitParameters(params);
+        return reg;
+    }  
 }
