@@ -1,7 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?page title="Zk 8.5 MVVM Spring Boot 2.0" contentType="text/html;charset=UTF-8"?>
+<?link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css" ?>
+<?link rel="stylesheet" type="text/css" href="/static/css/AdminLTE.min.css" ?>
 
-<zk xmlns="http://www.zkoss.org/2005/zul">
-    <window>
-        Welcome dude!
-    </window>
+<zk xmlns="http://www.zkoss.org/2005/zul"
+    xmlns:x="http://www.w3.org/1999/xhtml">
+    <style> 
+        .z-window-content {
+        padding: 0px;
+        }
+        
+        .z-tabpanel {
+        padding: 5px;
+        }
+        
+        body {
+        padding: 0px; 
+        }
+        
+        .panel-body {
+        padding: 2px;
+        }
+    </style>
+    <div id="windowmainb" class="box box-primary"         
+         validationMessages="@id('vmsgs')" viewModel="@id('vm') @init('com.mkdika.spring5zk85.vmcontroller.IndexVm')" >                    
+        <!--        <div class="box-header with-border">
+            <x:h3 class="box-title">
+                <label value="ZK 8.5 MVVM Spring Boot 2.0 Demo" style="margin: 0px 0px 0px 10px;vertical-align: middle;padding:0px 15px 0px 0px;"/>
+            </x:h3>         
+        </div>-->
+        <div class="box-header">
+            <x:h3 >ZK 8.5 MVVM Spring Boot 2.0 Demo</x:h3>
+        </div>
+        <div class="box-body">
+            <tabbox id="tb" height="300px" style="margin: 0px 0px 0px 0px;">
+                <tabs id="tabs" class="nav nav-pills" >
+                    <tab id="list" iconSclass="z-icon-table" />
+                    <tab id="form" iconSclass="z-icon-desktop" />        
+                </tabs>
+                <tabpanels>
+                    <tabpanel>
+                        <div class="form-body">
+                            <div class="row">                                
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        First Name
+                                        <textbox id="tbfirstname" hflex="1"  maxlength="255" />
+                                    </div>                                    
+                                </div> 
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        Last Name
+                                        <textbox id="tblastname" hflex="1" maxlength="255" />                                     
+                                    </div>                                                                    
+                                </div>                                                                                                       
+                            </div>                        
+                        </div>                                                                                                                                               
+                    </tabpanel>
+                    <tabpanel></tabpanel>        
+                </tabpanels>
+            </tabbox>
+        </div>                
+    </div>
+    <script src="/static/js/bootstrap.min.js" />    
+    <script src="/static/js/adminlte.min.js" />    
 </zk>
